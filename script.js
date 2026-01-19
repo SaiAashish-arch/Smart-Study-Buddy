@@ -1,12 +1,5 @@
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let completed = JSON.parse(localStorage.getItem("completed")) || [];
-const quotes = [
-  "Believe in yourself!",
-  "Focus on progress, not perfection.",
-  "One step at a time.",
-  "Your future is created by what you do today!",
-  "Stay consistent, stay strong!"
-];
 const themeToggle = document.getElementById("themeToggle");
 themeToggle?.addEventListener("click", () => {
   document.body.classList.toggle("dark-bg");
@@ -27,10 +20,11 @@ function addTask() {
     alert("Please fill all details");
     return;
   }
-  if (document.getElementById("taskForm").dataset.editIndex !== undefined) {
-    let index = document.getElementById("taskForm").dataset.editIndex;
+  const form = document.getElementById("taskForm");
+  if ("editIndex" in form.dataset) {
+    let index = form.dataset.editIndex;
     tasks[index] = { name: taskName, start: startTime, due: dueTime, subject: subject };
-    delete document.getElementById("taskForm").dataset.editIndex;
+    delete form.dataset.editIndex;
   } else {
     tasks.push({ name: taskName, start: startTime, due: dueTime, subject: subject });
   }
@@ -65,14 +59,12 @@ function completeTask(index) {
   saveTasks();
   displayTasks();
   displayCompleted();
-  updateProgress();
 }
 function deleteTask(index) {
   if (confirm("Are you sure you want to delete this task?")) {
     tasks.splice(index, 1);
     saveTasks();
     displayTasks();
-    updateProgress();
   }
 }
 function editTask(index) {
@@ -111,35 +103,24 @@ function updateTimers() {
       let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       let seconds = Math.floor((diff % (1000 * 60)) / 1000);
       cell.innerText = `${hours}h ${minutes}m ${seconds}s`;
-      if (diff <= 5 * 60 * 1000) {
-        cell.style.color = "red";
-      } else {
-        cell.style.color = "";
+      if (diff <= 5 * 60 * 1000 && !t.alerted) {
+        alert(`⚠ Task "${t.name}" is almost due!`);
+        t.alerted = true;
       }
+      cell.style.color = diff <= 5 * 60 * 1000 ? "red" : "";
     } else {
       cell.innerText = "Time's up!";
       cell.style.color = "red";
+      if (!t.timeUpAlerted) {
+        alert(`⏰ Task "${t.name}" is overdue!`);
+        t.timeUpAlerted = true;
+      }
     }
   });
 }
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
   localStorage.setItem("completed", JSON.stringify(completed));
-}
-function updateProgress() {
-  const pending = tasks.length;
-  const done = completed.length;
-  const percent = pending + done === 0 ? 0 : Math.round((done / (pending + done)) * 100);
-  document.getElementById("pendingCount")?.innerText = pending;
-  document.getElementById("completedCount")?.innerText = done;
-  document.getElementById("progressPercent")?.innerText = percent + "%";
-}
-function showQuote() {
-  const quote = quotes[Math.floor(Math.random() * quotes.length)];
-  const welcomeText = document.getElementById("welcomeText");
-  if (welcomeText) {
-    welcomeText.innerHTML += `<br><em>"${quote}"</em>`;
-  }
 }
 function clearForm() {
   document.getElementById("taskName").value = "";
@@ -151,6 +132,4 @@ function clearForm() {
 displayTasks();
 displayCompleted();
 updateTimers();
-updateProgress();
-showQuote();
 setInterval(updateTimers, 1000);
