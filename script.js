@@ -1,51 +1,64 @@
-const quotes = [
-  "Believe in yourself ",
-  "Discipline beats motivation ",
-  "Study now, shine later ",
-  "You are closer than you think "
-];
-document.getElementById("quote").innerText =
-  quotes[Math.floor(Math.random() * quotes.length)];
-let completed = 0;
-function saveName() {
-    const name = document.getElementById("username").value;
-    document.getElementById("welcome").innerText =
-        "Welcome, " + name + " 👋";
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let completed = JSON.parse(localStorage.getItem("completed")) || [];
+
+function goToSchedule() {
+  window.location.href = "schedule.html";
 }
 function addTask() {
-    const taskInput = document.getElementById("taskInput");
-    if (taskInput.value === "") return;
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <span onclick="done(this)">${taskInput.value}</span>
-      <button onclick="removeTask(this)">❌</button>
+  const task = prompt("Enter Task");
+  const time = prompt("Enter Start & Due Time");
+  const subject = prompt("Enter Subject Name");
+  if (!task) return;
+  tasks.push({ task, time, subject });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  location.reload();
+}
+function renderTasks() {
+  const table = document.getElementById("taskTable");
+  if (!table) return;
+  table.innerHTML = "";
+  tasks.forEach((t, i) => {
+    table.innerHTML += `
+      <tr>
+        <td>${t.task}</td>
+        <td>${t.time}</td>
+        <td>${t.subject}</td>
+        <td>
+          <span style="color:green;cursor:pointer" onclick="completeTask(${i})">✔</span>
+          &nbsp;
+          <span style="color:red;cursor:pointer" onclick="deleteTask(${i})">✖</span>
+        </td>
+      </tr>
     `;
-    document.getElementById("taskList").appendChild(li);
-    taskInput.value = "";
+  });
 }
-function done(task) {
-    if (!task.classList.contains("done")) {
-        task.classList.add("done");
-        completed++;
-        document.getElementById("counter").innerText =
-            "Completed: " + completed;
-    }
+function completeTask(index) {
+  const doneTask = tasks.splice(index, 1)[0];
+  doneTask.doneTime = new Date().toLocaleString();
+  completed.push(doneTask);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("completed", JSON.stringify(completed));
+  location.reload();
 }
-function removeTask(btn) {
-    btn.parentElement.remove();
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  location.reload();
 }
-let time = 1500;
-let timer;
-function startTimer() {
-    timer = setInterval(() => {
-        if (time <= 0) clearInterval(timer);
-        time--;
-        document.getElementById("time").innerText =
-            Math.floor(time/60) + ":" + String(time%60).padStart(2,"0");
-    }, 1000);
+function renderCompleted() {
+  const table = document.getElementById("completedTable");
+  if (!table) return;
+  table.innerHTML = "";
+  completed.forEach(t => {
+    table.innerHTML += `
+      <tr>
+        <td>${t.task}</td>
+        <td>${t.doneTime}</td>
+        <td>${t.subject}</td>
+        <td>✔</td>
+      </tr>
+    `;
+  });
 }
-function resetTimer() {
-    clearInterval(timer);
-    time = 1500;
-    document.getElementById("time").innerText = "25:00";
-}
+renderTasks();
+renderCompleted();
