@@ -1,6 +1,5 @@
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let completed = JSON.parse(localStorage.getItem("completed")) || [];
-
 function openForm() {
   document.getElementById("taskForm").classList.toggle("hidden");
 }
