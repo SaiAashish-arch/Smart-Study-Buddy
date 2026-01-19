@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Schedule Tasks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="navbar light">
+  <div class="logo">SCHEDULE TASKS</div>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="completed.html">COMPLETED TASKS</a>
+  </nav>
+</header>
+<section class="table-section">
+  <table>
+    <tr>
+      <th>Task</th>
+      <th>Start & Due Time</th>
+      <th>Subject Name</th>
+      <th>Done or Not Done</th>
+    </tr>
+    <tbody id="taskTable"></tbody>
+  </table>
+  <button class="add-btn" onclick="addTask()">+ Add Task</button>
+</section>
+<script src="script.js"></script>
+</body>
+</html>
