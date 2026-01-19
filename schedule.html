@@ -6,24 +6,33 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="navbar light">
-  <div class="logo">SCHEDULE TASKS</div>
-  <nav>
-    <a href="index.html">HOME</a>
-    <a href="completed.html">COMPLETED TASKS</a>
-  </nav>
-</header>
-<section class="table-section">
+<nav>
+  <h2>SMART STUDY BUDDY</h2>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="schedule.html">Schedule Tasks</a></li>
+    <li><a href="completed.html">Completed Tasks</a></li>
+  </ul>
+</nav>
+<section class="container">
+  <h2>Schedule Tasks</h2>
+  <button onclick="openForm()" class="btn">Add Task</button>
+  <div id="taskForm" class="form hidden">
+    <input type="text" id="taskName" placeholder="Task Name">
+    <input type="datetime-local" id="startTime">
+    <input type="datetime-local" id="dueTime">
+    <input type="text" id="subject" placeholder="Subject Name">
+    <button onclick="addTask()" class="btn">Save Task</button>
+  </div>
   <table>
     <tr>
       <th>Task</th>
       <th>Start & Due Time</th>
-      <th>Subject Name</th>
-      <th>Done or Not Done</th>
+      <th>Subject</th>
+      <th>Done / Not Done</th>
     </tr>
     <tbody id="taskTable"></tbody>
   </table>
-  <button class="add-btn" onclick="addTask()">+ Add Task</button>
 </section>
 <script src="script.js"></script>
 </body>
