@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Study Buddy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Smart Study Buddy</h1>
+    <input type="text" id="username" placeholder="Enter your name">
+    <button onclick="saveName()">Start</button>
+    <h2 id="welcome"></h2>
+    <p id="quote"></p>
+    <div class="ta">
+        <input type="text" id="taskInput" placeholder="Add study task">
+        <button onclick="addTask()">➕</button>
+    </div>
+    <p id="counter">Completed: 0</p>
+    <ul id="taskList"></ul>
+    <div class="timer">
+        <h3>⏱ Study Timer</h3>
+        <p id="time">25:00</p>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="resetTimer()">Reset</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
