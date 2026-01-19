@@ -4,19 +4,27 @@ function openForm() {
   document.getElementById("taskForm").classList.toggle("hidden");
 }
 function addTask() {
-  let task = {
-    name: taskName.value,
-    start: startTime.value,
-    due: dueTime.value,
-    subject: subject.value
-  };
-  if (!task.name || !task.start || !task.due || !task.subject) {
+  let taskName = document.getElementById("taskName").value;
+  let startTime = document.getElementById("startTime").value;
+  let dueTime = document.getElementById("dueTime").value;
+  let subject = document.getElementById("subject").value;
+  if (!taskName || !startTime || !dueTime || !subject) {
     alert("Please fill all details");
     return;
   }
+  let task = {
+    name: taskName,
+    start: startTime,
+    due: dueTime,
+    subject: subject
+  };
   tasks.push(task);
   localStorage.setItem("tasks", JSON.stringify(tasks));
   displayTasks();
+  document.getElementById("taskName").value = "";
+  document.getElementById("startTime").value = "";
+  document.getElementById("dueTime").value = "";
+  document.getElementById("subject").value = "";
 }
 function displayTasks() {
   let table = document.getElementById("taskTable");
