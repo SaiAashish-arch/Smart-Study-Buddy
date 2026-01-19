@@ -1,61 +1,79 @@
-* {
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: Arial, sans-serif;
+  background: #f5f7fa;
 }
-body.dark {
-  background: radial-gradient(circle, #08122f, #020817);
-  color: #ffd966;
+.dark-bg {
+  background: radial-gradient(circle, #0a0f3c, #02052a);
+  color: white;
 }
-.navbar {
+nav {
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 15px 40px;
+  background: #02052a;
+  color: gold;
 }
-.navbar.light {
-  background: #f5f6fa;
-  color: #000;
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
 }
-.navbar a {
-  margin-left: 20px;
+nav a {
+  color: gold;
   text-decoration: none;
-  color: inherit;
+  font-weight: bold;
 }
 .hero {
-  padding: 120px 80px;
-  max-width: 600px;
+  padding: 100px;
 }
 .hero h1 {
   font-size: 48px;
+  color: gold;
 }
 .hero p {
-  margin-top: 20px;
-  color: #cfd3ff;
+  font-size: 18px;
+  margin: 20px 0;
 }
-.hero button {
-  margin-top: 40px;
-  padding: 14px 40px;
-  border-radius: 30px;
-  border: none;
-  background: #ffd966;
-  font-weight: bold;
-  cursor: pointer;
-}
-.table-section {
-  padding: 60px;
+.container {
+  padding: 40px;
 }
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 th, td {
-  border: 1px solid #333;
-  padding: 12px;
+  border: 1px solid #ccc;
+  padding: 10px;
   text-align: center;
 }
-.add-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
+th {
+  background: #eee;
+}
+.btn {
+  background: gold;
+  color: black;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
   font-weight: bold;
+}
+.form input {
+  margin: 10px;
+  padding: 10px;
+}
+.hidden {
+  display: none;
+}
+.tick {
+  color: green;
+  font-size: 20px;
+  cursor: pointer;
+}
+.cross {
+  color: red;
+  font-size: 20px;
+  cursor: pointer;
 }
