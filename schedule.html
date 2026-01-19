@@ -6,37 +6,41 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav>
-  <h2>SMART STUDY BUDDY</h2>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="schedule.html">Schedule Tasks</a></li>
-    <li><a href="completed.html">Completed Tasks</a></li>
-  </ul>
-</nav>
-<section class="container">
-  <h2>Schedule Tasks</h2>
-  <button onclick="openForm()" class="btn">Add Task</button>
-<input type="text" id="taskName" placeholder="Task name">
-
-<input type="datetime-local" id="startTime">
-
-<input type="datetime-local" id="dueTime">
-
-<input type="text" id="subject" placeholder="Subject name">
-
-<button onclick="addTask()">Add Task</button>
-  </div>
-  <table>
-    <tr>
-      <th>Task</th>
-      <th>Start & Due Time</th>
-      <th>Subject</th>
-      <th>Done / Not Done</th>
-    </tr>
-    <tbody id="taskTable"></tbody>
-  </table>
-</section>
-<script src="script.js"></script>
+  <nav>
+    <h2>SMART STUDY BUDDY</h2>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="schedule.html">Schedule Tasks</a></li>
+      <li><a href="completed.html">Completed Tasks</a></li>
+    </ul>
+    <button id="themeToggle" class="btn-small">Toggle Theme</button>
+  </nav>
+  <section class="container">
+    <h2>Schedule Tasks</h2>
+    <button onclick="openForm()" class="btn">Add Task</button>
+    <div id="taskForm" class="form hidden">
+      <h3>Add New Task</h3>
+      <input type="text" id="taskName" placeholder="Task Name">
+      <input type="datetime-local" id="startTime">
+      <input type="datetime-local" id="dueTime">
+      <input type="text" id="subject" placeholder="Subject Name">
+      <div class="form-buttons">
+        <button onclick="addTask()" class="btn">Add Task</button>
+        <button onclick="closeForm()" class="btn btn-red">Cancel</button>
+      </div>
+    </div>
+    <table>
+      <tr>
+        <th>Task</th>
+        <th>Start & Due</th>
+        <th>Subject</th>
+        <th>Status</th>
+        <th>Time Left</th>
+        <th>Actions</th>
+      </tr>
+      <tbody id="taskTable"></tbody>
+    </table>
+  </section>
+  <script src="script.js"></script>
 </body>
 </html>
