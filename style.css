@@ -1,49 +1,61 @@
-body {
-  background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
-  font-family: Arial;
-  color: white;
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
-.container {
-  width: 360px;
-  margin: auto;
-  padding: 20px;
-  background: #111;
-  border-radius: 20px;
-  box-shadow: 0 0 20px cyan;
+body.dark {
+  background: radial-gradient(circle, #08122f, #020817);
+  color: #ffd966;
 }
-h1 {
-  color: #00ffff;
-}
-input {
-  padding: 8px;
-  width: 70%;
-  border-radius: 6px;
-  border: none;
-}
-button {
-  padding: 8px 12px;
-  background: #00ffff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-#quote {
-  color: gold;
-  font-style: italic;
-}
-li {
-  background: #222;
-  margin: 8px;
-  padding: 8px;
-  border-radius: 8px;
+.navbar {
   display: flex;
   justify-content: space-between;
+  padding: 20px 40px;
 }
-.done {
-  text-decoration: line-through;
-  color: gray;
+.navbar.light {
+  background: #f5f6fa;
+  color: #000;
 }
-.timer {
+.navbar a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: inherit;
+}
+.hero {
+  padding: 120px 80px;
+  max-width: 600px;
+}
+.hero h1 {
+  font-size: 48px;
+}
+.hero p {
   margin-top: 20px;
+  color: #cfd3ff;
+}
+.hero button {
+  margin-top: 40px;
+  padding: 14px 40px;
+  border-radius: 30px;
+  border: none;
+  background: #ffd966;
+  font-weight: bold;
+  cursor: pointer;
+}
+.table-section {
+  padding: 60px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #333;
+  padding: 12px;
+  text-align: center;
+}
+.add-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
 }
