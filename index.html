@@ -13,14 +13,33 @@
       <li><a href="schedule.html">Schedule Tasks</a></li>
       <li><a href="completed.html">Completed Tasks</a></li>
     </ul>
+    <button id="themeToggle" class="btn-small">Toggle Theme</button>
   </nav>
   <section class="hero">
     <h1>Hello Learner!!</h1>
-    <p>
+    <p id="welcomeText">
       Welcome to your Smart Study Buddy.<br>
       I’ll help you plan your studies, complete tasks, and stay motivated every day.
     </p>
     <a href="schedule.html" class="btn">GET STARTED</a>
   </section>
+  <section class="stats-container">
+    <h2>Your Progress</h2>
+    <div class="stats">
+      <div class="card">
+        <h3>Pending Tasks</h3>
+        <p id="pendingCount">0</p>
+      </div>
+      <div class="card">
+        <h3>Completed Tasks</h3>
+        <p id="completedCount">0</p>
+      </div>
+      <div class="card">
+        <h3>Progress</h3>
+        <p id="progressPercent">0%</p>
+      </div>
+    </div>
+  </section>
+  <script src="script.js"></script>
 </body>
 </html>
